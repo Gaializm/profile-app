@@ -1,4 +1,5 @@
 import img from '../assets/profilePlaceholder.png';
+import '../styles/card.css';
 const Card2 = () => {
     const name = 'Jane Doe';
     const title = 'UX Designer';
