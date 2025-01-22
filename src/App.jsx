@@ -24,6 +24,8 @@ const App = () => {
                 <div className="section">
                     <div className="container">
                         <div className="profile-cards">
+                            <Card1 />
+                            <Card2 />
                         </div>
                     </div>
                 </div>
