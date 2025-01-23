@@ -1,6 +1,6 @@
 
 import Navbar from "./components/Navbar";
-import img from './assets/profilePlaceholder.png';
+import image from './assets/profilePlaceholder.png';
 import Card from "./components/Card";
 import Wrapper from "./components/wrapper";
 import About from "./components/About";
@@ -10,13 +10,13 @@ const App = () => {
 
     const profiles = [
     {
-        img: img,
+        img: image,
         name: 'John Doe',
         title: 'Software Engineer',
         email:'a@a.com'
     },
     {
-        img: img,
+        img: image,
         name: 'Jane Doe',
         title: 'UX Designer',
         email: 'b@a.com'
@@ -37,7 +37,7 @@ const App = () => {
                 </Wrapper>
                 <Wrapper>
                         <div className="profile-cards">
-                        {profiles.map(profiles => <Card img={profiles.img} name={profiles.name} title={profiles.title} email={profiles.email} />)}
+                        {profiles.map(profile => <Card img={profile.img} name={profile.name} title={profile.title} email={profile.email} />)}
                         </div>
                 </Wrapper>
             </main>
