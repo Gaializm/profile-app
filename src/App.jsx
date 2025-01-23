@@ -1,11 +1,27 @@
 
 import Navbar from "./components/Navbar";
-import Card1 from "./components/Card1";
-import Card2 from "./components/Card2";
+import img from './assets/profilePlaceholder.png';
+import Card from "./components/Card";
+import Wrapper from "./components/wrapper";
 import About from "./components/About";
 import "./App.css";
 
 const App = () => {
+
+    const profiles = [
+    {
+        img: img,
+        name: 'John Doe',
+        title: 'Software Engineer',
+        email:'a@a.com'
+    },
+    {
+        img: img,
+        name: 'Jane Doe',
+        title: 'UX Designer',
+        email: 'b@a.com'
+    }
+    ]
 
     return (
         <>
@@ -13,24 +29,17 @@ const App = () => {
                 <Navbar />
             </header>
             <main>
-                <div className="section">
-                    <div className="container">
+                <Wrapper>
                         <h1>Profile App</h1>
-                    </div>
-                </div>
-                <div className="section">
-                    <div className="container">
+                </Wrapper>
+                <Wrapper>
                         <About />
-                    </div>
-                </div>
-                <div className="section">
-                    <div className="container">
+                </Wrapper>
+                <Wrapper>
                         <div className="profile-cards">
-                            <Card1 />
-                            <Card2 />
+                        {profiles.map(profiles => <Card img={profiles.img} name={profiles.name} title={profiles.title} email={profiles.email} />)}
                         </div>
-                    </div>
-                </div>
+                </Wrapper>
             </main>
         </>
     )
