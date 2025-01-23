@@ -1,6 +1,6 @@
 import '../styles/card.css';
 import PropTypes from 'prop-types';
-const Card = (img, name, title, email) => {
+const Card = ({img, name, title, email}) => {
 
     return (
         <div className="profile-card">
@@ -16,7 +16,7 @@ const Card = (img, name, title, email) => {
     );
 }
 
-Card.PropTypes = {
+Card.propTypes = {
 
     img: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
