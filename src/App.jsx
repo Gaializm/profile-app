@@ -5,6 +5,7 @@ import Card from "./components/Card";
 import Wrapper from "./components/wrapper";
 import About from "./components/About";
 import "./App.css";
+import { useState } from "react";
 
 const App = () => {
 
@@ -20,8 +21,51 @@ const App = () => {
         name: 'Jane Doe',
         title: 'UX Designer',
         email: 'b@a.com'
+    },
+    {
+        img: image,
+        name: 'Layla Doe',
+        title: 'Software Engineer',
+        email:'c@a.com'
+    },
+    {
+        img: image,
+        name: 'Ryan Colby',
+        title: 'UX Designer',
+        email: 'd@a.com'
+    },
+    {
+        img: image,
+        name: 'Shae Wilson',
+        title: 'Software Engineer',
+        email:'e@a.com'
+    },
+    {
+        img: image,
+        name: 'Ryan Matthews',
+        title: 'UX Designer',
+        email: 'f@a.com'
     }
     ]
+
+
+    const titles = [...new Set(profiles.map((profile) => profile.title))];
+    const [title, setTitle] = useState("");
+
+    const handleTitleChange = (e) => {
+        setTitle(e.target.value);
+        console.log(e.target.value)
+    };
+
+    const filteredProfiles = profiles.filter((profile) =>
+        // if (title === "") {
+        //     return true;
+        // } else {
+        //    return profile.title === title;
+        // };
+
+        title === "" || profile.title === title
+    );
 
     return (
         <>
@@ -36,8 +80,22 @@ const App = () => {
                         <About />
                 </Wrapper>
                 <Wrapper>
+                    <div className="filter-wrapper">
+                        <div className="selectFilter">
+
+                            <label htmlfor="select-title">Select a title:</label>
+
+                            <select id="select-title" onChange={handleTitleChange}>
+                                {titles.map((title) => (<option key={title} value={title}>{title}</option>)) }
+                                {/*   <option value="">All</option>
+                                <option value="Software Engineer">Software Engineer</option>
+                                <option value="UX Designer">UX Designer</option> */}
+                            </select>
+
+                        </div>
+                    </div>
                         <div className="profile-cards">
-                        {profiles.map(profile => <Card img={profile.img} name={profile.name} title={profile.title} email={profile.email} />)}
+                        {filteredProfiles.map(profile => <Card img={profile.img} name={profile.name} title={profile.title} email={profile.email} />)}
                         </div>
                 </Wrapper>
             </main>
