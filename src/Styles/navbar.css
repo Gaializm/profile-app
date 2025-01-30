@@ -3,7 +3,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    &.section
+}
+
+ &.section
 
 {
     padding-top: 1rem;
@@ -15,11 +17,13 @@ ul {
     align-items: center;
     list-style: none;
     padding-left: 0;
-    li
+}
 
-{
+li {
     margin-right: 1rem;
-    a
+}
+
+a
 
 {
     color: var(--button-text-color);
@@ -29,6 +33,3 @@ a:hover {
     color: var(--link-hover-color);
 }
 
-}
-}
-}

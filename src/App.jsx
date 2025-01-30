@@ -51,10 +51,19 @@ const App = () => {
 
     const titles = [...new Set(profiles.map((profile) => profile.title))];
     const [title, setTitle] = useState("");
+    const [search, setSearch] = useState("");
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
         console.log(e.target.value)
+    };
+    const handleSearchChange = (e) => {
+        setSearch(e.target.value);
+    }
+
+    const handleClear = () => {
+        setTitle("")
+        setSearch("")
     };
 
     const filteredProfiles = profiles.filter((profile) =>
@@ -64,7 +73,7 @@ const App = () => {
         //    return profile.title === title;
         // };
 
-        title === "" || profile.title === title
+       ( title === "" || profile.title === title) && (profile.name.toLowerCase().includes(search.toLowerCase()))
     );
 
     return (
@@ -86,12 +95,23 @@ const App = () => {
                             <label htmlfor="select-title">Select a title:</label>
 
                             <select id="select-title" onChange={handleTitleChange}>
+                                <option value="">All</option>
                                 {titles.map((title) => (<option key={title} value={title}>{title}</option>)) }
                                 {/*   <option value="">All</option>
                                 <option value="Software Engineer">Software Engineer</option>
                                 <option value="UX Designer">UX Designer</option> */}
                             </select>
 
+                        </div>
+                        <div className="search-filter">
+
+                        <label htmlfor="search-filter">Search by name:</label>
+                            <input type="text" id="search" onChange={handleSearchChange} />
+
+
+                        </div>
+                        <div className="clearButton">
+                            <button onClick={handleClear}>Clear</button>
                         </div>
                     </div>
                         <div className="profile-cards">
