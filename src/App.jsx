@@ -53,17 +53,28 @@ const App = () => {
     const [title, setTitle] = useState("");
     const [search, setSearch] = useState("");
 
+    const [animation, setAnimation] = useState(false);
+    
+    const handleAnimation = () => {
+        setAnimation(false);
+    }
+
+
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
-        console.log(e.target.value)
+        setAnimation(true);
     };
+
+
     const handleSearchChange = (e) => {
         setSearch(e.target.value);
+        setAnimation(true);
     }
 
     const handleClear = () => {
         setTitle("")
         setSearch("")
+        setAnimation(true);
     };
 
     const filteredProfiles = profiles.filter((profile) =>
@@ -79,7 +90,7 @@ const App = () => {
     return (
         <>
             <header>
-                <Navbar />
+                <Navbar/>
             </header>
             <main>
                 <Wrapper>
@@ -115,7 +126,7 @@ const App = () => {
                         </div>
                     </div>
                         <div className="profile-cards">
-                        {filteredProfiles.map(profile => <Card img={profile.img} name={profile.name} title={profile.title} email={profile.email} />)}
+                        {filteredProfiles.map(profile => <Card key={profile.email} {...profile} animate={animation} updateAnimate={handleAnimation} />)}
                         </div>
                 </Wrapper>
             </main>

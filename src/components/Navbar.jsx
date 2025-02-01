@@ -1,7 +1,7 @@
-import '../styles/navbar.css';
+import style from '../Styles/navbar.module.css';
 const Navbar = () => {
     return (
-        <nav className="Navbar">
+        <nav className={`${style["navbar"]}  section`}>
             <ul>
                 <li>
                     <a href="#">Home</a>
