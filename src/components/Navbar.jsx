@@ -1,5 +1,5 @@
 import style from '../Styles/navbar.module.css';
-const Navbar = () => {
+const Navbar = ({ mode, updateMode }) => {
     return (
         <nav className={`${style["navbar"]}  section`}>
             <ul>
@@ -13,6 +13,9 @@ const Navbar = () => {
                     <a href="#">Profiles</a>
                 </li>
             </ul>
+            <button onClick={updateMode}>
+                {mode === "light" ? "Light Mode" : "Dark Mode"}
+            </button>
         </nav>
     );
 }

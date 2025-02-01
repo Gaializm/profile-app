@@ -59,6 +59,13 @@ const App = () => {
         setAnimation(false);
     }
 
+    const [mode, setMode] = useState("light");
+
+    const handleModeChange = () => {
+        setMode(mode === "light" ? "dark" : "light");
+    };
+
+
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
@@ -90,9 +97,9 @@ const App = () => {
     return (
         <>
             <header>
-                <Navbar/>
+                <Navbar mode={mode} updateMode={handleModeChange} />
             </header>
-            <main>
+            <main className={mode === "light" ? "light" : "dark"}>
                 <Wrapper>
                         <h1>Profile App</h1>
                 </Wrapper>
