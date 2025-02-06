@@ -4,6 +4,7 @@ import image from './assets/profilePlaceholder.png';
 import Card from "./components/Card";
 import Wrapper from "./components/wrapper";
 import About from "./components/About";
+import ProfileForm from "./components/ProfileForm";
 import "./App.css";
 import { useState } from "react";
 
@@ -105,6 +106,9 @@ const App = () => {
                 </Wrapper>
                 <Wrapper>
                         <About />
+                </Wrapper>
+                <Wrapper>
+                    <ProfileForm />
                 </Wrapper>
                 <Wrapper>
                     <div className="filter-wrapper">
