@@ -7,10 +7,13 @@ import About from "./components/About";
 import ProfileForm from "./components/ProfileForm";
 import "./App.css";
 import { useState } from "react";
+import { useEffect } from "react";
+import { use } from "react";
+
 
 const App = () => {
 
-    const profiles = [
+   /* const profiles = [
     {
         img: image,
         name: 'John Doe',
@@ -47,8 +50,18 @@ const App = () => {
         title: 'UX Designer',
         email: 'f@a.com'
     }
-    ]
+    ]*/
 
+
+    const [profiles, setProfiles] = useState([]);
+    useEffect(() => {
+        fetch("https://web.ics.purdue.edu/~gmejiasg/CGT390/fetch-data.php")
+            .then((res) => res.json())
+            .then((data) => {
+                setProfiles(data);
+                console.log(data)
+            })
+    }, []);
 
     const titles = [...new Set(profiles.map((profile) => profile.title))];
     const [title, setTitle] = useState("");
@@ -137,7 +150,7 @@ const App = () => {
                         </div>
                     </div>
                         <div className="profile-cards">
-                        {filteredProfiles.map(profile => <Card key={profile.email} {...profile} animate={animation} updateAnimate={handleAnimation} />)}
+                        {filteredProfiles.map(profile => <Card key={profile.id} {...profile} animate={animation} updateAnimate={handleAnimation} />)}
                         </div>
                 </Wrapper>
             </main>
