@@ -6,6 +6,8 @@ import Wrapper from "./components/wrapper";
 import About from "./components/About";
 import ProfileForm from "./components/ProfileForm";
 import "./App.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { useState } from "react";
 import { useEffect } from "react";
 import { use } from "react";
@@ -53,17 +55,15 @@ const App = () => {
     ]*/
 
 
-    const [profiles, setProfiles] = useState([]);
+    const [titles, setTitles] = useState([]);
     useEffect(() => {
-        fetch("https://web.ics.purdue.edu/~gmejiasg/CGT390/fetch-data.php")
+        fetch("https://web.ics.purdue.edu/~gmejiasg/CGT390/get-titles.php")
             .then((res) => res.json())
             .then((data) => {
-                setProfiles(data);
-                console.log(data)
+                setTitles(data.titles)
             })
-    }, []);
+    }, [])
 
-    const titles = [...new Set(profiles.map((profile) => profile.title))];
     const [title, setTitle] = useState("");
     const [search, setSearch] = useState("");
 
@@ -83,19 +83,33 @@ const App = () => {
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
-        setAnimation(true);
+        setPage(1);
     };
 
 
     const handleSearchChange = (e) => {
         setSearch(e.target.value);
-        setAnimation(true);
+        setPage(1);
     }
+
+    const [profiles, setProfiles] = useState([]);
+    const [page, setPage] = useState(1);
+    const [count, setCount] = useState(1);
+
+    useEffect(() => {
+        fetch(`https://web.ics.purdue.edu/~gmejiasg/CGT390/fetch-data-with-filter.php?title=${title}&name=${search}&page=${page}&limit=10`)
+            .then((res) => res.json())
+            .then((data) => {
+                setProfiles(data.profiles);
+                setCount(data.count);
+                setPage(data.page);
+            })
+    }, [title, search, page]);
 
     const handleClear = () => {
         setTitle("")
         setSearch("")
-        setAnimation(true);
+        setPage(1);
     };
 
     const filteredProfiles = profiles.filter((profile) =>
@@ -150,8 +164,25 @@ const App = () => {
                         </div>
                     </div>
                         <div className="profile-cards">
-                        {filteredProfiles.map(profile => <Card key={profile.id} {...profile} animate={animation} updateAnimate={handleAnimation} />)}
+                        {profiles.map((profile) => <Card key={profile.id} {...profile} animate={animation} updateAnimate={handleAnimation} />)}
+                    </div>
+                    {
+                        count === 0 && <p>No profiles found!</p>
+                    }
+                    {count > 10 &&
+                        <div className="pagination">
+                            <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+                                <span className="sr-only">Previous</span>
+                                <FontAwesomeIcon icon={faChevronLeft} />
+                            </button>
+                            <span>{page}/{Math.ceil(count / 10)}</span>
+                            <button onClick={() => setPage(page + 1)} disabled={page >= Math.ceil(count / 10)}>
+                                <span className="sr-only">Next</span>
+                                <FontAwesomeIcon icon={faChevronRight} />
+                            </button>
                         </div>
+                    }
+
                 </Wrapper>
             </main>
         </>
