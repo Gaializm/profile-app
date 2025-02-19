@@ -1,16 +1,18 @@
-import style from '../Styles/navbar.module.css';
-const Navbar = ({ mode, updateMode }) => {
+import style from '../Styles/navbar.module.css'; 
+import { Link } from "react-router-dom";
+
+const Navbar = ({ mode, updateMode }) => { 
     return (
         <nav className={`${style["navbar"]}  section`}>
             <ul>
                 <li>
-                    <a href="#">Home</a>
+                    <Link to="/">Home</Link>
                 </li>
                 <li>
-                    <a href="#">About</a>
+                    <Link to="/about">About</Link>
                 </li>
                 <li>
-                    <a href="#">Profiles</a>
+                    <Link to="/add-profile">Add Profile</Link>
                 </li>
             </ul>
             <button onClick={updateMode}>
