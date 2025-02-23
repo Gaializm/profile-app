@@ -1,7 +1,9 @@
 
 import Navbar from "./components/Navbar";
 import AboutPage from "./pages/AboutPage";
-import ProfileForm from "./components/ProfileForm";
+import ProfileDetailPage from "./pages/ProfileDetailPage";
+import ProfileEditPage from "./pages/ProfileEditPage";
+import ProfileIndexPage from "./pages/ProfileIndexPage";
 import AddProfilePage from "./pages/AddProfilePage";
 import HomePage from "./pages/HomePage";
 import NotFound from "./pages/NotFound";
@@ -29,6 +31,10 @@ const App = () => {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/about" element={<AboutPage />} />
                     <Route path="/add-profile" element={<AddProfilePage />} />
+                    <Route path="profile/:id" element={<ProfileIndexPage />}>
+                        <Route index element={<ProfileDetailPage />} />
+                        <Route path="edit" element={<ProfileEditPage />} />
+                    </Route>
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </main>

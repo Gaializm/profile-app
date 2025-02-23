@@ -33,7 +33,10 @@ input {
     justify-content: center;
     align-items: center;
     margin-top: 1.5rem;
-    button: disabled;
+}
+
+
+.pagination button:disabled
 
 {
     cursor: not-allowed;
@@ -41,7 +44,7 @@ input {
     color: var(--button-hover-text-color);
 }
 
-button {
+.pagination button {
     margin: 0.5rem;
 }
-}
+

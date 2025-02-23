@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useEffect } from "react";
 import styles from "../styles/home.module.css";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
     const [titles, setTitles] = useState([]);
@@ -85,7 +86,9 @@ const HomePage = () => {
             </div>
             <div className={styles["profile-cards"]}>
                 {profiles.map((profile) => (
-                    <Card key={profile.id} {...profile} />
+                    <Link to={`/profile/${profile.id}`} key={profile.id}>
+                        <Card key={profile.id} {...profile} />
+                    </Link> 
                 ))}
             </div>
             {count === 0 && <p>No profiles found!</p>}

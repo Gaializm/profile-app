@@ -18,11 +18,10 @@
     text-align: center;
     width: 200px;
     box-shadow: var(--box-shadow);
-    height: 100%;
     margin: 0.75rem;
-} 
-    
- .is-entering {
+    &.is-entering
+
+{
     opacity: 0;
     transform: scale(0.9);
     animation: cardEnter 0.5s forwards; /* Apply the animation */
@@ -47,10 +46,12 @@ img {
 }
 
 .profile-card__content {
+    p
 
-p {
+{
     margin: 0;
-    color: var(--text-color) !important;
-    }
+    color: var(--text-color);
 }
 
+}
+}
