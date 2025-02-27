@@ -1,7 +1,12 @@
 import style from '../Styles/navbar.module.css'; 
 import { Link } from "react-router-dom";
+import { ModeContext } from "../contexts/ModeContext";
+import { useContext } from "react";
 
-const Navbar = ({ mode, updateMode }) => { 
+const Navbar = () => {
+
+    const { mode, handleModeChange } = useContext(ModeContext);
+
     return (
         <nav className={`${style["navbar"]}  section`}>
             <ul>
@@ -15,7 +20,7 @@ const Navbar = ({ mode, updateMode }) => {
                     <Link to="/add-profile">Add Profile</Link>
                 </li>
             </ul>
-            <button onClick={updateMode}>
+            <button onClick={handleModeChange}>
                 {mode === "light" ? "Light Mode" : "Dark Mode"}
             </button>
         </nav>

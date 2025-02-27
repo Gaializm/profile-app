@@ -9,22 +9,20 @@ import HomePage from "./pages/HomePage";
 import NotFound from "./pages/NotFound";
 import { useState, useEffect } from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
+import { ModeContext } from "./contexts/ModeContext";
+import { useContext } from "react";
 import "./App.css";
 
 
 
 const App = () => {
 
-    const [mode, setMode] = useState("light");
-
-    const handleModeChange = () => {
-        setMode(mode === "light" ? "dark" : "light");
-    };
+    const { mode } = useContext(ModeContext);
 
     return (
         <HashRouter>
             <header>
-                <Navbar mode={mode} updateMode={handleModeChange} />
+                <Navbar />
             </header>
             <main className={mode === "light" ? "light" : "dark"}>
                 <Routes>
