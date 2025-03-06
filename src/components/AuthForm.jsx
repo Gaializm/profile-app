@@ -1,9 +1,12 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import style from "../styles/ProfileForm.module.css";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
+import { use } from "react";
 
 const AuthForm = ({ isRegister = false }) => {
+
+    const usernameRef = useRef(null);
   const { login } = useContext(AuthContext);
   const [data, setData] = useState({
     username: "",
@@ -13,7 +16,13 @@ const AuthForm = ({ isRegister = false }) => {
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
-  const navigate = useNavigate();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        usernameRef.current.focus();
+    }, []);
+
+
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -61,7 +70,8 @@ const AuthForm = ({ isRegister = false }) => {
 
   return (
     <form onSubmit={handleSubmit} className={style["profile-form"]}>
-      <input
+          <input
+        ref={usernameRef}
         type="text"
         name="username"
         placeholder="Username"
