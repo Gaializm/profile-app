@@ -7,39 +7,26 @@ import {
     faChevronLeft,
     faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useReducer } from "react";
+// import { useEffect, useReducer } from "react";
 import styles from "../styles/home.module.css";
 import { Link } from "react-router-dom";
-import { initialState, homeReducer } from "../reducers/homeReducer";
+// import { initialState, homeReducer } from "../reducers/homeReducer";
+import useHomePage from "../hooks/homePageHook";
 
 const HomePage = () => {
-    const [state, dispatch] = useReducer(homeReducer, initialState);
+    const { state, dispatch } = useHomePage();
+    // const [state, dispatch] = useReducer(homeReducer, initialState);
     const { titles, title, search, profiles, page, count } = state;
 
-    // get titles
-    useEffect(() => {
-        fetch("https://web.ics.purdue.edu/~gmejiasg/CGT390/get-titles.php")
-            .then((res) => res.json())
-            .then((data) => {
-                dispatch({ type: "SET_TITLES", payload: data.titles });
-            });
-    }, []);
     //update the title on change of the drowndrop
     const handleTitleChange = (event) => {
         dispatch({ type: "SET_TITLE", payload: event.target.value });
     };
+
     //update the search on change of the input
     const handleSearchChange = (event) => {
         dispatch({ type: "SET_SEARCH", payload: event.target.value });
     };
-    //fetch the data from the server
-    useEffect(() => {
-        fetch(`https://web.ics.purdue.edu/~gmejiasg/CGT390/fetch-data-with-filter.php?title=${title}&name=${search}&page=${page}&limit=10`)
-            .then((res) => res.json())
-            .then((data) => {
-                dispatch({ type: "FETCH_DATA", payload: data });
-            })
-    }, [title, search, page]);
     //clear the title and search
     const handleClear = () => {
         dispatch({ type: "CLEAR_FILTER" });

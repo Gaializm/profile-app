@@ -13,14 +13,14 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import { useContext } from "react";
 import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
-import { ModeContext } from "./contexts/ModeContext";
+import { useMode } from "./contexts/ModeContext";
 import "./App.css";
 
 
 
 const App = () => {
 
-    const { mode } = useContext(ModeContext);
+    const { mode } = useMode();
 
     return (
         <AuthProvider>

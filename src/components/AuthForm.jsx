@@ -2,12 +2,14 @@ import { useState, useEffect, useContext, useRef } from "react";
 import style from "../styles/ProfileForm.module.css";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
-import { use } from "react";
+import useAuthForm from "../hooks/authFormHook";
 
 const AuthForm = ({ isRegister = false }) => {
 
+    const { data, error, submitting, successMessage, handleChange, handleSubmit } = useAuthForm(isRegister);
+
     const usernameRef = useRef(null);
-  const { login } = useContext(AuthContext);
+  /*const { login } = useContext(AuthContext);
   const [data, setData] = useState({
     username: "",
     password: "",
@@ -16,7 +18,7 @@ const AuthForm = ({ isRegister = false }) => {
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
-    const navigate = useNavigate();
+    const navigate = useNavigate();*/
 
     useEffect(() => {
         usernameRef.current.focus();
@@ -24,7 +26,7 @@ const AuthForm = ({ isRegister = false }) => {
 
 
 
-  const handleChange = (e) => {
+ /*const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
@@ -66,7 +68,7 @@ const AuthForm = ({ isRegister = false }) => {
     } finally {
       setSubmitting(false);
     }
-  };
+  };*/
 
   return (
     <form onSubmit={handleSubmit} className={style["profile-form"]}>
