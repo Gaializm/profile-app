@@ -1,12 +1,24 @@
 import styles from "../styles/navbar.module.css";
-import { Link } from "react-router-dom";
-import { useMode } from "../contexts/ModeContext";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../contexts/AuthContext";
+import { useSelector, useDispatch } from "react-redux";
+import { toggle } from "../redux/slices/modeSlice.js";
 
 const Navbar = () => {
-    const { mode, handleModeChange } = useMode();
+
+    const mode = useSelector((state) => state.mode.mode);
+    const dispatch = useDispatch();
+    const handleModeChange = () => {
+        dispatch(toggle());
+    }
+
     const { isLogin, logout } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const handleClick = () => {
+        logout();
+        navigate("/login");
+    }
     return (
         <nav className={`${styles["navbar"]}`}>
             <ul>
@@ -24,7 +36,7 @@ const Navbar = () => {
             </ul>
             {
                 isLogin ?
-                    <button onClick={logout}>Logout</button>
+                    <button onClick={handleClick}>Logout</button>
                     :
                     <ul>
                         <li><Link to="/register">Register</Link></li>
