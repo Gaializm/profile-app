@@ -4,6 +4,7 @@ import { useContext } from "react";
 import AuthContext from "../contexts/AuthContext";
 import { useSelector, useDispatch } from "react-redux";
 import { toggle } from "../redux/slices/modeSlice.js";
+import { logout } from "../redux/slices/authSlice.js";
 
 const Navbar = () => {
 
@@ -13,10 +14,12 @@ const Navbar = () => {
         dispatch(toggle());
     }
 
-    const { isLogin, logout } = useContext(AuthContext);
+    const isLogin = useSelector((state) => state.auth.isLogin);
+    // const { isLogin, logout } = useContext(AuthContext);
     const navigate = useNavigate();
     const handleClick = () => {
-        logout();
+        // logout();
+        dispatch(logout());
         navigate("/login");
     }
     return (
