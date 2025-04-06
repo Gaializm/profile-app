@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Wrapper from "../components/Wrapper";
 import styles from "../styles/profiledetail.module.css";
 import { Link } from "react-router-dom";
+import ChatbotToggle from "../components/ChatbotToggle";
 
 const ProfileDetailPage = () => {
     const [profile, setProfile] = useState({});
@@ -29,6 +30,7 @@ const ProfileDetailPage = () => {
                 <img src={profile.image_url} alt={profile.name} />
                 <Link to="edit" className={styles['button']}>Edit Profile</Link>
             </div>
+            <ChatbotToggle />
         </Wrapper>
     );
 };

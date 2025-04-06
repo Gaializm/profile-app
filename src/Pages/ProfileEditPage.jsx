@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Wrapper from "../components/Wrapper";
 import { useNavigate } from "react-router-dom";
 import ProfileForm from "../components/ProfileForm";
+import ChatbotToggle from "../components/ChatbotToggle";
 
 const ProfileEditPage = () => {
     const navigate = useNavigate();
@@ -42,6 +43,7 @@ const ProfileEditPage = () => {
             <h1>Edit Profile</h1>
             <ProfileForm isEdit={true} currentProfile={profile} />
             <button onClick={handleDelete} style={{ margin: "3rem auto 0", display: "block" }}>Delete Profile</button>
+            <ChatbotToggle />
         </Wrapper>
     );
 };

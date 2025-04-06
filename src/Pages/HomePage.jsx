@@ -10,6 +10,7 @@ import styles from "../styles/home.module.css";
 import { Link } from "react-router-dom";
 import useHomePage from "../hooks/homePageHook";
 import Filters from "../components/Filters";
+import ChatbotToggle from "../components/ChatbotToggle";
 
 const HomePage = () => {
     const { state, dispatch } = useHomePage();
@@ -73,6 +74,7 @@ const HomePage = () => {
                     </button>
                 </div>
             )}
+            <ChatbotToggle />
         </Wrapper>
     );
 };
